@@ -16,7 +16,7 @@ about_info = {
 
 experiences_data = [
     {
-        "job_title": "Senior Software Engineer",
+        "job_title": "Data Operator",
         "date": "2022 - Present",
         "location": "San Francisco, CA",
         "company_name": "Google",
