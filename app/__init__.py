@@ -5,6 +5,11 @@ from dotenv import load_dotenv
 load_dotenv()
 app = Flask(__name__)
 
+hero_info = {
+    "name": "Jenny Cheng",
+    "intro": "A passionate software engineer specializing in AI and full-stack development. I thrive on building innovative solutions and bringing ideas to life.",
+}
+
 about_info = {
     "name": "Jenny Cheng",
     "bio": "I'm a software engineer passionate about AI and full-stack development.",
@@ -87,15 +92,66 @@ hobbies = [
     {"name": "Cafe", "color": "#512DA8", "label": "Coffee Time"},
 ]
 
+projects = [
+    {
+        "title": "Glance",
+        "subtitle": "AI Social Cheat Sheet",
+        "description": "An AI-powered tool that summarizes any X user's tweets into a snapshot of their interests, tone, and focus.",
+        "image_url": "/img/projects/glance.webp",
+        "link": "https://github.com/ericcxie/glance",
+        "tags": ["Next.js", "OpenAI API", "X API", "Supabase", "Prisma"]
+    },
+    {
+        "title": "Summailize",
+        "subtitle": "Gmail Digest Generator",
+        "description": "A Gmail extension that summarizes unread emails using AI and stores digest in Firestore, with support for both per-email and full summary views.",
+        "image_url": "/img/projects/summailize.webp",
+        "link": "https://github.com/jennyycheng/summailize",
+        "tags": ["Python", "Flask", "OpenAI API", "Gmail API", "Firebase"]
+    },
+    {
+        "title": "IntelliView",
+        "subtitle": "Mock Interview Transcript Agent",
+        "description": "Built with Google’s AI Agent Development Kit, this tool conducts real-time mock interviews, transcribes sessions, and summarizes answers using Gemini.",
+        "image_url": "/static/img/Intelliview.png",
+        "link": "https://github.com/lydia-yan/Intelliview",
+        "tags": ["Gemini", "Google ADK", "FastAPI", "WebSocket", "Streaming"]
+    },
+    {
+        "title": "Smart Bookmark",
+        "subtitle": "AI Bookmark Organizer",
+        "description": "A Chrome extension that classifies and tags your saved URLs using Gemini’s summarization and prompt APIs, and suggests folders based on content.",
+        "image_url": "/img/projects/bookmark.webp",
+        "link": "https://github.com/Jennyyyy0212/bookmark-organizer",
+        "tags": ["Chrome Extension", "Gemini", "Prompt API", "JavaScript"]
+    },
+    {
+        "title": "TeamCAST",
+        "subtitle": "Team Contribution Tracking Tool",
+        "description": "An AI-powered dashboard that auto-fetches GitHub PRs and visualizes team contributions for collaborative learning or grading use cases.",
+        "image_url": "/img/projects/teamcast.webp",
+        "link": "https://github.com/jennyycheng/teamcast",
+        "tags": ["React", "Firebase", "GitHub API", "Tailwind CSS", "PR Viewer"]
+    }
+]
+
 
 @app.route("/")
 def index():
     return render_template(
         "index.html",
         title="MLH Fellow",
+        hero_info=hero_info,
         about_info=about_info,
         experiences=experiences_data,
         education=education_data,
+        projects=projects,
+        mapbox_token = "pk.eyJ1IjoiamVubnl5eXkwMjEyIiwiYSI6ImNtY3RvZTNkNDAwZzgyd3B5cmxvb2FzeTgifQ.OX0MjKAR_xr1lP8gAAYJKw",
+        locations = [
+            {"title": "Waterloo, ON", "coords": [-80.5167, 43.4668]},
+            {"title": "Toronto, ON", "coords": [-79.3832, 43.6532]},
+            {"title": "Vancouver, BC", "coords": [-123.1207, 49.2827]},
+        ],
         url=os.getenv("URL"),
     )
 

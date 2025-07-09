@@ -1,0 +1,38 @@
+<section class="section-projects">
+    <div class="projects-header">
+        <h1 class="section-title">Projects</h1>
+        <p class="section-subtitle">
+            My professional journey in technology
+        </p>
+    </div>
+    <div class="project-scroller">
+        <div class="project-track">
+            {% for project in projects %}
+            <div class="project-card-wrapper animate-in" style="--index:{{ loop.index0 }}">
+                <div class="project-card group">
+                    <img src="{{ project.image_url }}" alt="{{ project.title }}" class="project-image">
+                    <div class="project-overlay group-hover:opacity-100">
+                        <a href="{{ project.link }}" target="_blank" class="project-icon-link">
+                            <!-- GitHub icon SVG -->
+                        </a>
+                        <div class="project-info">
+                            <h2 class="project-title">{{ project.title }}</h2>
+                            <p class="project-desc">{{ project.description }}</p>
+                            <div class="project-tags">
+                                {% for tag in project.tags %}
+                                <span class="project-tag">{{ tag }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-caption">
+                    <h2 class="inline font-bold">{{ project.title }}</h2>
+                    <span class="mx-1">—</span>
+                    <span>{{ project.subtitle }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

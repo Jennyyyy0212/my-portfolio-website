@@ -223,3 +223,9 @@ body {
     font-size: 50px;
     font-weight: 700;
 }
+
+.over-the-rainbow-regular {
+  font-family: "Over the Rainbow", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
