@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  frontend:
+    container_name: prod_frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+  backend:
+    container_name: prod_backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.prod
+    ports:
+      - "5050:5000"
+    environment:
+      - FLASK_ENV=production
