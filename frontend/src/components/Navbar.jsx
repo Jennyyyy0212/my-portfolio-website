@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../static/styles/navbar.css';
 import { MdDarkMode, MdLightMode } from 'react-icons/md';
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from 'react-router-dom';
 
 
 
@@ -34,11 +35,11 @@ const Navbar = () => {
 
       </div>
       <div className="navbar-center">
-        <a href="/">Home</a>
-        <a href="#projects">Projects</a>
-        <a href="#experience">Experience</a>
-        <a href="#education">Education</a>
-        <a href="/hobbies">Hobbies</a>
+        <Link to="/">Home</Link>
+        <Link to="#projects">Projects</Link>
+        <Link to="#experience">Experience</Link>
+        <Link to="#education">Education</Link>
+        <Link to="/hobbies">Hobbies</Link>
       </div>
       <div className="navbar-right">
         <button id="theme-toggle" onClick={handleThemeToggle} aria-label="Toggle theme">
