@@ -35,11 +35,11 @@ const Navbar = () => {
 
       </div>
       <div className="navbar-center">
-        <Link to="/">Home</Link>
+        <Link to="/my-portfolio-website/">Home</Link>
         <Link to="#projects">Projects</Link>
         <Link to="#experience">Experience</Link>
         <Link to="#education">Education</Link>
-        <Link to="/hobbies">Hobbies</Link>
+        <Link to="/my-portfolio-website/hobbies">Hobbies</Link>
       </div>
       <div className="navbar-right">
         <button id="theme-toggle" onClick={handleThemeToggle} aria-label="Toggle theme">
