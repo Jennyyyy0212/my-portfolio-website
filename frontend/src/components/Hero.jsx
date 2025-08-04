@@ -36,7 +36,7 @@ const Hero = ({ aboutInfo, heroInfo }) => {
                             style={{ transformStyle: "preserve-3d", borderRadius: "16px" }}
                         >
                             <img
-                                src={aboutInfo.photo_url}
+                                src={`${process.env.PUBLIC_URL}/${aboutInfo.photo_url}`}
                                 alt="Profile Picture"
                                 className="h-full w-full object-cover contrast-75"
                                 style={{ borderRadius: "16px", transform: "scale(1.5) translate(-10px, -10px)", filter: "none", transition: "transform 0.3s ease" }} // ✅ Force square shape

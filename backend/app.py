@@ -87,7 +87,7 @@ education_data = [
         "date": "2014 - Present",
         "location": "Irvine, CA",
         "institution_name": "University of California, Irvine",
-        "institution_logo": "https://brand.uci.edu/logos/_img/ucirvine-gold.png",
+        "institution_logo": "/static/img/uci-logo.jpeg",
         "institution_link": "https://uci.edu/",
         "description": "Graduate program focused on scalable systems, backend development, and engineering best practices. Collaborating on real-world projects with a strong emphasis on infrastructure and testing.",
     },
