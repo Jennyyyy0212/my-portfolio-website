@@ -36,7 +36,7 @@ const Education = ({ education }) => {
                 <div className="experience-body">
                   <div className="experience-logo">
                     <a href={edu.institution_link} target="_blank" rel="noopener noreferrer">
-                      <img src={edu.institution_logo} alt={edu.institution_name} />
+                      <img src={`${process.env.PUBLIC_URL}/${edu.institution_logo}`} alt={edu.institution_name} />
                     </a>
                   </div>
                   <div className="experience-content">

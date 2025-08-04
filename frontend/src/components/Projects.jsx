@@ -23,7 +23,7 @@ const Projects = ({ projects }) => {
               >
                 <div className="project-card group relative overflow-hidden rounded-xl shadow-lg w-[250px] md:w-[430px] h-[250px] cursor-pointer">
                   <img
-                    src={project.image_url}
+                    src={`${process.env.PUBLIC_URL}/${project.image_url}`}
                     alt={project.title}
                     className="project-image h-full w-full object-cover transition duration-300 ease-in-out group-hover:blur-sm group-hover:opacity-50"
                   />

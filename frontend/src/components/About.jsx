@@ -12,7 +12,7 @@ const About = ({ aboutInfo }) => {
                 <div className="about-me-row">
                     <div className="about-me-image">
                         <img
-                            src={aboutInfo.photo_url}
+                            src={`${process.env.PUBLIC_URL}/${aboutInfo.photo_url}`}
                             alt="Profile Picture"
                             className="object-cover w-full h-full"
                         />

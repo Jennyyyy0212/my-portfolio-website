@@ -34,7 +34,7 @@ const Experience = ({ experiences }) => {
                 <div className="experience-body">
                   <div className="experience-logo">
                     <a href={job.company_link} target="_blank" rel="noopener noreferrer">
-                      <img src={job.company_logo} alt={job.company_name} />
+                      <img src={`${process.env.PUBLIC_URL}/${job.company_logo}`} alt={job.company_name} />
                     </a>
                   </div>
                   <div className="experience-content">
