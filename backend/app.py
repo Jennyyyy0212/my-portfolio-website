@@ -131,6 +131,7 @@ projects = [
         "title": "Smart Bookmark",
         "subtitle": "AI Bookmark Organizer",
         "description": "A Chrome extension that uses Gemini to summarize and tag saved URLs, then automatically sorts them into folders based on content.",
+        "image_url": "/static/img/bookmark-screen.png",
         "link": "https://github.com/Jennyyyy0212/bookmark-organizer",
         "tags": ["Chrome Extension", "Gemini", "AI", "JavaScript"],
     },
