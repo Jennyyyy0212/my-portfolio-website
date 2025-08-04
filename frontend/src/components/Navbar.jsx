@@ -28,18 +28,18 @@ const Navbar = () => {
 
     <nav className="navbar">
       <div className="navbar-left">
-        <Link to="/" className="logo">
+        <a href="#home" className="logo">
           <span className="logo-full">Jenny Cheng</span>
           <span className="logo-short">Jenny</span>
-        </Link>
+        </a>
 
       </div>
       <div className="navbar-center">
-        <Link to="/">Home</Link>
-        <Link to="#projects">Projects</Link>
-        <Link to="#experience">Experience</Link>
-        <Link to="#education">Education</Link>
-        <Link to="/hobbies">Hobbies</Link>
+        <a href="#home">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="/hobbies">Hobbies</a>
       </div>
       <div className="navbar-right">
         <button id="theme-toggle" onClick={handleThemeToggle} aria-label="Toggle theme">

@@ -26,7 +26,7 @@ const Hero = ({ aboutInfo, heroInfo }) => {
         { name: "Android", filename: "icons/Android.png" },
     ];
     return (
-        <section className="section-hero">
+        <section id="home" className="section-hero">
 
             <div className="about-me-row">
                 <div className="about-me-image">
