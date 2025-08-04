@@ -25,7 +25,7 @@ function App() {
   const [map, setMap] = useState(null); // or set to {} if preferred
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/api/data")
+    fetch("https://my-portfolio-website-vdiy.onrender.com/api/data")
       .then((res) => res.json())
       .then((data) => {
         setHero(data.hero);
