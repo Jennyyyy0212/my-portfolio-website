@@ -80,7 +80,7 @@ const Hero = ({ aboutInfo, heroInfo }) => {
                             className="group flex flex-col items-center transition-all duration-150"
                         >
                             <img
-                                src={`/${icon.filename}`}
+                                src={`${process.env.PUBLIC_URL}/${icon.filename}`}
                                 alt={icon.name}
                                 className="themable-icon h-8 w-8 object-contain group-hover:grayscale-0 transition duration-200"
                             />
