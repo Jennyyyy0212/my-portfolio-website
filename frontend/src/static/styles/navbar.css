@@ -1,0 +1,120 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: var(--bg);
+    z-index: 999;
+    box-sizing: border-box;
+}
+
+.navbar-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding-left: 48px;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.navbar-center {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    list-style: none;
+}
+
+.navbar-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 40px;
+}
+
+.navbar-left .logo {
+    font-family: "Over the Rainbow", cursive;
+    font-size: 1.5rem;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.logo-full {
+  display: inline;
+}
+.logo-short {
+  display: none;
+}
+
+/* On small screens, only show short version */
+@media (max-width: 640px) {
+  .logo-full {
+    display: none;
+  }
+  .logo-short {
+    display: inline;
+  }
+}
+
+.navbar-center a {
+    color: var(--text);
+    padding: 0 12px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.navbar-center a:hover {
+    color: var(--text-hover);
+}
+
+.navbar-right button#theme-toggle {
+    cursor: pointer;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.material-symbols-outlined {
+    font-size: 24px;
+    overflow: hidden;
+    transition: 0.3s ease;
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+}
+
+.material-symbols-outlined:hover {
+    color: var(--text-hover);
+}
+
+.icon {
+  font-size: 1.8rem;
+  color: var(--text); /* or a fixed color if needed */
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none !important;
+}
+
+
+.theme-icon-wrapper {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

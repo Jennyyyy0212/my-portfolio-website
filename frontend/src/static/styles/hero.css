@@ -1,0 +1,179 @@
+/* Section spacing */
+.section-hero {
+  margin-top: 4rem;
+  padding-top: 5rem;
+  /* Tailwind: py-20 */
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .section-hero {
+    padding-top: 8rem;
+    /* md:py-32 */
+  }
+}
+
+/* Container */
+.hero-container {
+  max-width: 1280px;
+  /* Tailwind: container */
+  padding-left: 1.5rem;
+  /* px-6 */
+  padding-right: 1.5rem;
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+/* Heading */
+.hero-heading {
+  font-size: 3rem;
+  /* text-5xl */
+  font-weight: 700;
+  /* font-bold */
+  color: var(--text);
+  /* text-violet-800 */
+  margin-bottom: 1rem;
+  /* mb-4 */
+}
+
+@media (min-width: 768px) {
+  .hero-heading {
+    font-size: 4.5rem;
+    /* md:text-7xl */
+  }
+}
+
+/* Subheading */
+.hero-subheading {
+  font-size: 1.125rem;
+  /* text-lg */
+  color: var(--text-light);
+  /* text-gray-600 */
+  max-width: 48rem;
+  /* max-w-3xl */
+  margin: 16px 0;
+}
+
+@media (min-width: 768px) {
+  .hero-subheading {
+    font-size: 1.25rem;
+    /* md:text-xl */
+  }
+}
+
+/* CTA Container */
+.hero-cta {
+  margin-top: 3rem;
+  /* mt-12 */
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  /* space-x-4 */
+}
+
+/* Buttons */
+.btn-primary,
+.btn-secondary {
+  font-weight: 700;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  /* rounded-full */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  /* shadow-lg */
+  transition: transform 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: var(--text); /* black */
+  color: var(--bg); /* white */
+}
+
+.btn-primary:hover {
+  background-color: var(--accent);
+  /* hover:bg-violet-700 */
+  transform: scale(1.05);
+}
+
+.btn-secondary {
+  background-color: var(--bg); /* white */
+  color: var(--text); /* black */
+  border: 1px solid var(--border); /* light gray */
+}
+
+.btn-secondary:hover {
+  background-color: var(--hover); /* hover gray */
+  /* hover:bg-gray-100 */
+  transform: scale(1.05);
+}
+
+
+/** Skills*/
+.marquee-wrapper {
+  overflow: hidden;
+  width: 100%;
+  margin-top: 2rem;
+  padding: 1rem 0;
+  position: relative;
+}
+
+
+.marquee-track {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+[data-theme='light'] img.themable-icon {
+  filter: invert(0%) grayscale(100%);
+}
+[data-theme='dark'] img.themable-icon {
+  filter: invert(100%) grayscale(100%);
+}
+
+.about-me-row {
+  min-height: 200px;
+  display: flex;
+  text-align: center;
+  justify-content: flex-start; 
+  gap: 40px;
+  margin-bottom: 50px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.about-me-image {
+  width: 240px;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-right: 40px;
+  border-radius: 16px;
+  overflow: visible; /* 🔥 important for 3D effects */
+}
+
+.about-me-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px; /* ✅ square corners with a slight round */
+  display: block;
+}
+
+
+.about-me-image img:hover {
+  transform: scale(1.05);
+}
