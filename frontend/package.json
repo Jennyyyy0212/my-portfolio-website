@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Jennyyyy0212.github.io",
+  "homepage": "https://Jennyyyy0212.github.io/my-portfolio-website",
   "proxy": "https://my-portfolio-website-vdiy.onrender.com",
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.11",
