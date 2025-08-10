@@ -9,4 +9,5 @@ COPY . .
 RUN npm install
 
 # Run the React development server (with hot reload)
+ENV HOST=0.0.0.0
 CMD ["npm", "start"]

@@ -16,8 +16,9 @@ services:
     container_name: website_backend
     build: ./backend
     ports:
-      - "5000:5000"
+      - "5002:5000"
     environment:
       - FLASK_ENV=development
     volumes:
       - ./backend:/app
+    restart: unless-stopped
