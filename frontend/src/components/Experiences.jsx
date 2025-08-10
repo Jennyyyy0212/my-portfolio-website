@@ -21,8 +21,10 @@ const Experience = ({ experiences }) => {
         <div className="experiences-list-wrapper">
 
           <div className="experiences-list">
-            {experiences.map((job, index) => (
-              <div
+            {experiences.map((job, index) => {
+              const fileName = String(job.company_logo || "").replace(/^\/+/, "");
+              return (
+                <div
                 className="experience-item"
                 key={index}
                 onClick={() => toggleExpanded(index)}
@@ -34,7 +36,7 @@ const Experience = ({ experiences }) => {
                 <div className="experience-body">
                   <div className="experience-logo">
                     <a href={job.company_link} target="_blank" rel="noopener noreferrer">
-                      <img src={`${process.env.PUBLIC_URL}/${job.company_logo}`} alt={job.company_name} />
+                      <img src={`${process.env.PUBLIC_URL}/${fileName}`} alt={job.company_name} />
                     </a>
                   </div>
                   <div className="experience-content">
@@ -90,7 +92,8 @@ const Experience = ({ experiences }) => {
                   )}
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>

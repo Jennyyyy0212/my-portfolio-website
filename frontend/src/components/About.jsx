@@ -4,6 +4,7 @@ import '../static/styles/about.css'; // Optional: your original styles
 
 const About = ({ aboutInfo }) => {
     if (!aboutInfo) return null;
+    
     return (
         <section id="about" className="about-section py-16 bg-white dark:bg-black">
             <div className="container mx-auto px-4 max-w-6xl">

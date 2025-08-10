@@ -23,8 +23,10 @@ const Education = ({ education }) => {
         <div className="experiences-list-wrapper">
 
           <div className="experiences-list">
-            {education.map((edu, index) => (
-              <div
+            {education.map((edu, index) => {
+              const fileName = String(edu.institution_logo || "").replace(/^\/+/, "");
+              return (
+                <div
                 className="experience-item"
                 key={index}
                 onClick={() => toggleExpanded(index)}
@@ -36,7 +38,7 @@ const Education = ({ education }) => {
                 <div className="experience-body">
                   <div className="experience-logo">
                     <a href={edu.institution_link} target="_blank" rel="noopener noreferrer">
-                      <img src={`${process.env.PUBLIC_URL}/${edu.institution_logo}`} alt={edu.institution_name} />
+                      <img src={`${process.env.PUBLIC_URL}/${fileName}`} alt={edu.institution_name} />
                     </a>
                   </div>
                   <div className="experience-content">
@@ -87,7 +89,8 @@ const Education = ({ education }) => {
                   )}
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
