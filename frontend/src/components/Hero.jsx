@@ -6,20 +6,21 @@ import { CometCard } from "./ui/comet-card.tsx";
 const Hero = ({ aboutInfo, heroInfo }) => {
     if (!heroInfo) return null;
     const fileName = aboutInfo.photo_url.replace(/^\/+/, "");
+    console.log("Current Public URL: ", process.env.PUBLIC_URL);
 
     const skills = [
         { name: "Linux", filename: "icons/Linux.png" },
         { name: "Docker", filename: "icons/Docker.png" },
         { name: "Python", filename: "icons/Python.png" },
         { name: "React", filename: "icons/React.png" },
-        { name: "JavaScript", filename: "icons/Javascript.png" },
+        { name: "JavaScript", filename: "icons/JavaScript.png" },
         { name: "Java", filename: "icons/Java.png" },
-        { name: "MongoDB", filename: "icons/Mongodb.png" },
+        { name: "MongoDB", filename: "icons/MongoDB.png" },
         { name: "Markdown", filename: "icons/Markdown.png" },
         { name: "Flutter", filename: "icons/Flutter.png" },
-        { name: "FastAPI", filename: "icons/Fastapi.png" },
+        { name: "FastAPI", filename: "icons/FastAPI.png" },
         { name: "Flask", filename: "icons/Flask.png" },
-        { name: "GitHub", filename: "icons/Github.png" },
+        { name: "GitHub", filename: "icons/GitHub.png" },
         { name: "Git", filename: "icons/Git.png" },
         { name: "Firebase", filename: "icons/Firebase.png" },
         { name: "Dart", filename: "icons/Dart.png" },
