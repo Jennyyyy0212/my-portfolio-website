@@ -122,7 +122,7 @@ jobs:
             -H "Content-Type: application/json" \
             -d @- <<JSON
           {
-            "content": "✅ *Personal Website Deploy Deploy Succeeded* for \`${{ github.repository }}\` @ \`${{ github.ref_name }}\`",
+            "content": "✅ **Personal Website Deploy Deploy Succeeded** for \`${{ github.repository }}\` @ \`${{ github.ref_name }}\`",
             "embeds": [{
               "title": "Deployment Summary",
               "description": $(jq -Rs . < msg.txt)
@@ -138,7 +138,7 @@ jobs:
             -H "Content-Type: application/json" \
             -d @- <<JSON
           {
-            "content": "🚨 *Personal Website Deploy Failed* for \`${{ github.repository }}\` @ \`${{ github.ref_name }}\`",
+            "content": "🚨 **Personal Website Deploy Failed** for \`${{ github.repository }}\` @ \`${{ github.ref_name }}\`",
             "embeds": [{
               "title": "Deployment Summary",
               "description": $(jq -Rs . < msg.txt),
