@@ -1,0 +1,151 @@
+name: Deploy site
+on: 
+  workflow_dispatch:
+    inputs:
+          branch_name:
+            description: 'Branch to run the workflow on'
+            required: true
+            default: 'main'
+            type: string
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: deploy-site
+  cancel-in-progress: true
+
+jobs:
+  deploy_backend:
+    name: Backend - Trigger Render Deploy
+    runs-on: ubuntu-latest
+    outputs:
+      status_code: ${{ steps.call.outputs.http_code }}
+    steps:
+      - name: Trigger Render deploy
+        id: call
+        shell: bash
+        run: |
+          code=$(curl -fsS -o /tmp/render_resp.json -w "%{http_code}" -X POST "$RENDER_DEPLOY_HOOK")
+          echo "http_code=$code" >> "$GITHUB_OUTPUT"  
+          echo "Render HTTP status: $code"
+        env:
+          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+      - name: Create Summary
+        run: |
+          echo "Backend Deploy completed — Render HTTP: \`${{ steps.call.outputs.http_code }}\`" >> "$GITHUB_STEP_SUMMARY"
+
+  build_frontend:
+    name: Frontend - Build and Upload Artifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Install dependencies
+        run: npm ci
+        working-directory: frontend
+      - name: Build
+        run: npm run build
+        working-directory: frontend
+      - name: Upload Page artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: frontend/build
+      - name: Create Summary
+        run: |
+          echo "Frontend build complete" >> "$GITHUB_STEP_SUMMARY"
+    
+  deploy_frontend:
+    name: Frontend - Deploy GitHub Pages
+    needs: build_frontend
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Create Summary
+        run: |
+          echo "Frontend Deploy completed - Pages URL: ${{ steps.deployment.outputs.page_url }}" >> "$GITHUB_STEP_SUMMARY"
+
+  notify:
+    name: Discord Notification
+    needs: [build_frontend, deploy_frontend, deploy_backend]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Compose message
+        
+        shell: bash
+        run: |
+          # Overall status
+          overall="success"
+          bf="${{ needs.build_frontend.result }}"
+          df="${{ needs.deploy_frontend.result }}"
+          bb="${{ needs.deploy_backend.result }}"
+
+          if [[ "$bf" != "success" || "$df" != "success" || "$bb" != "success" ]]; then
+            overall="failure"
+          fi
+
+          page_url="${{ needs.deploy_frontend.outputs.page_url }}"
+          render_code="${{ needs.deploy_backend.outputs.status_code }}"
+
+          # Build a compact summary block
+          summary=$(cat <<EOF
+          **Deploy Result:** ${overall^^}
+
+          **Jobs:**
+          - Frontend Build: \`${bf}\`
+          - Frontend Deploy: \`${df}\`${page_url:+ — <${page_url}>}
+          - Backend (Render): \`${bb}\`${render_code:+ — HTTP ${render_code}}
+          EOF
+          )
+          # Expose for next step
+          echo "overall=$overall" >> "$GITHUB_OUTPUT"
+          printf "%s" "$summary" > msg.txt
+
+      - name: Send Success to Discord
+        if: ${{ steps.compose.outputs.overall == 'success' }}
+        run: |
+          curl -s -X POST "$DISCORD_WEBHOOK" \
+            -H "Content-Type: application/json" \
+            -d @- <<JSON
+          {
+            "content": "✅ *Personal Website Deploy Deploy Succeeded* for \`${{ github.repository }}\` @ \`${{ github.ref_name }}\`",
+            "embeds": [{
+              "title": "Deployment Summary",
+              "description": $(jq -Rs . < msg.txt)
+            }]
+          }
+          JSON
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Send failure to Discord
+        if: ${{ steps.compose.outputs.overall != 'success' }}
+        run: |
+          curl -s -X POST "$DISCORD_WEBHOOK" \
+            -H "Content-Type: application/json" \
+            -d @- <<JSON
+          {
+            "content": "🚨 *Personal Website Deploy Failed* for \`${{ github.repository }}\` @ \`${{ github.ref_name }}\`",
+            "embeds": [{
+              "title": "Deployment Summary",
+              "description": $(jq -Rs . < msg.txt),
+              "color": 16711680
+            }]
+          }
+          JSON
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+  
