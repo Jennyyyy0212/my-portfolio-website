@@ -55,6 +55,8 @@ jobs:
       - name: Build
         run: npm run build
         working-directory: frontend
+        env:
+          CI: ""
       - name: Upload Page artifact
         uses: actions/upload-pages-artifact@v3
         with:
