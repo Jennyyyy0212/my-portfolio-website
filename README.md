@@ -1,81 +1,71 @@
-# Production Engineering - Week 1 - Portfolio Site
+# My Personal Website
 
-Welcome to the MLH Fellowship! During Week 1, you'll be using Flask to build a portfolio site. This site will be the foundation for activities we do in future weeks so spend time this week making it your own and reflect your personality!
+Welcome to Jennyyyy's site! I used Flask and React to build a portfolio site.
 
-## Tasks
+## Live link
+Site: [https://jennyyyy0212.github.io/my-portfolio-website/](https://jennyyyy0212.github.io/my-portfolio-website/)
 
-Once you've got your portfolio downloaded and running using the instructions below, you should attempt to complete the following tasks.
+## Tech
+- React (CRA)
+- Flask API (Python)
+- Docker (for local dev)
+- GitHub Actions (build & deploy)
+- Static hosting (GitHub Pages)
 
-For each of these tasks, you should create an [Issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues) and work on them in a new [branch](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches). When the task has been completed, you should open a [Pull Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests) and get another fellow in your pod to give you feedback before merging it in.
+## Requirement
+- Docker Desktop (or Docker Engine) + Docker Compose v2
+- (Optional) Python 3 & pip — only needed if you want to run the Flask backend without Docker
 
-*Note: Make sure to include a link to the Issue you're progressing on inside of your Pull Request so your reviewer knows what you're progressing on!*
-
-### GitHub Tasks
-- [x] Create Issues for each task below
-- [x] Progress on each task in a new branch
-- [x] Open a Pull Request when a task is finished to get feedback
-
-### Portfolio Tasks
-- [x] Add a photo of yourself to the website
-- [x] Add an "About youself" section to the website.
-- [x] Add your previous work experiences
-- [x] Add your hobbies (including images)
-- [x] Add your current/previous education
-- [x] Add a map of all the cool locations/countries you visited
-
-### Flask Tasks
-- [x] Get your Flask app running locally on your machine using the instructions below.
-- [x] Add a template for adding multiple work experiences/education/hobbies using [Jinja](https://jinja.palletsprojects.com/en/3.0.x/api/#basics)
-- [x] Create a new page to display hobbies.
-- [x] Add a menu bar that dynamically displays other pages in the app
-
-
-## Getting Started
-
-You need to do all your progress here.
-
-## Installation
-
-Make sure you have python3 and pip installed
-
-Create and activate virtual environment using virtualenv
-```bash
-$ python -m venv python3-virtualenv
-$ source python3-virtualenv/bin/activate
-```
-
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install all dependencies!
+### (Optional) Run Flask locally without Docker
+From the `backend` folder:
 
 ```bash
+python -m venv python3-virtualenv
+source python3-virtualenv/bin/activate     # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-## Usage
-
-Create a .env file using the example.env template (make a copy using the variables inside of the template)
-
-Start flask development server
+## Local development (Docker)
+Under the project `root` folder: 
 ```bash
-$ export FLASK_ENV=development
-$ flask run
+# Build and start containers in the background
+docker compose up --build -d
+
+# See running containers
+docker compose ps
+
+# See logs (replace with the service name, e.g., website_frontend or website_backend)
+docker logs <service-name>
+
+# Stop and remove containers
+docker compose down
 ```
 
-You should get a response like this in the terminal:
-```
-❯ flask run
- * Environment: development
- * Debug mode: on
- * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-```
+- Frontend: http://localhost:3000 (or 127.0.0.1:3000)
+- Backend: http://localhost:5002 (or 127.0.0.1:5002)
+You'll now be able to open the frontend URL to view the website!
 
-You'll now be able to access the website at `localhost:5000` or `127.0.0.1:5000` in the browser! 
+## Deploy via Github Action
+### Required Setup
+1. Repo settings
+   - Enable Pages → Build and deployment → Source: GitHub Actions.
+2. Create a Web Service on Render and get the deployed URL
+   - Set root directory as `backend`
+   - Set Dockerfile Path as `backend/ ./Dockerfile.prod` using the production Dockerfile
+3. Updated frontend config. Set homepage and proxy with your backend deploy URL and your github page to `package.json` (or let the workflow set `PUBLIC_URL`):
+   ```
+    {
+        "homepage": "https://<your-username>.github.io/<repo-name>/",
+        "proxy": "<Your backend deployed URL on Render>",
+    }
+   ```
+4. Secrets (Repo Settings → Secrets and variables → Actions)
+   - `DISCORD_WEBHOOK` – your Discord channel webhook URL on your Discord server (or delete the `notify` job).
+   - `RENDER_DEPLOY_HOOK` – your Render Web Service deploy hook. (If you don’t use Render, delete the `deploy_backend` job from the workflow.)
 
-*Note: The portfolio site will only work on your local machine while you have it running inside of your terminal. We'll go through how to host it in the cloud in the next few weeks!* 
-
-## Contributing
-
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
-
-Test
+### Deploy
+1. Push to `main` on your fork.
+2. Watch the run in `Actions` → `Deploy site`.
+3. **Manual trigger** the workflow after you tested on local and everything works good (Not automatically but you can change it if you want)
+4. Received the Discord notification if success or fail
+5. Check your updated site at `https://<your-username>.github.io/<repo-name>/` (You can also check the backend service deploy status on [Render](https://render.com/))
