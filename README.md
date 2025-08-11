@@ -1,4 +1,4 @@
-# My Personal Website
+# Jenny Cheng's Personal Portfolio
 
 Welcome to Jennyyyy's site! I used Flask and React to build a portfolio site.
 
