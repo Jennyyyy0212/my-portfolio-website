@@ -8,8 +8,6 @@ const About = ({ aboutInfo }) => {
     return (
         <section id="about" className="about-section py-16 bg-white dark:bg-black">
             <div className="container mx-auto px-4 max-w-6xl">
-
-
                 <div className="about-me-row">
                     <div className="about-me-image">
                         <img

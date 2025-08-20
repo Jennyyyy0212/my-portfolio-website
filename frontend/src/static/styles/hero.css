@@ -1,7 +1,5 @@
 /* Section spacing */
 .section-hero {
-  margin-top: 4rem;
-  padding-top: 5rem;
   /* Tailwind: py-20 */
   display: flex;
   flex-direction: column;
@@ -10,6 +8,8 @@
 @media (min-width: 768px) {
   .section-hero {
     padding-top: 8rem;
+    margin-top: 4rem;
+    padding-top: 5rem;
     /* md:py-32 */
   }
 }
@@ -176,4 +176,15 @@
 
 .about-me-image img:hover {
   transform: scale(1.05);
+}
+
+/* Ensure desktop experiences section is visible */
+@media (min-width: 768px) {
+  .hero-desktop {
+    display: block !important;
+  }
+}
+
+.hero-desktop {
+  display: none;
 }

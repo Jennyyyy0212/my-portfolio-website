@@ -15,3 +15,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+/* utility class we can use with Tailwind */
+.marquee {
+  animation: marquee var(--speed,30s) linear infinite;
+  will-change: transform;
+}

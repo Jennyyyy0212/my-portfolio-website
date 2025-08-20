@@ -48,18 +48,10 @@ function App() {
     <>
       <Navbar />
       <Hero aboutInfo={about} heroInfo={hero} />
-      <section id="projects">
         <Projects projects={projects} />
-      </section>
-      <section id="experience">
         <Experience experiences={experiences} />
-      </section>
-      <section id="education">
         <Education education={education} />
-      </section>
-      <section id="location">
         <Location map={map} />
-      </section>
       <Footer />
     </>
   );

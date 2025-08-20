@@ -190,3 +190,14 @@
   .project-scroller:hover .project-track {
       animation-play-state: paused;
   }
+
+  /* Ensure desktop experiences section is visible */
+@media (min-width: 768px) {
+  .project-desktop {
+    display: block !important;
+  }
+}
+
+.project-desktop {
+  display: none;
+}

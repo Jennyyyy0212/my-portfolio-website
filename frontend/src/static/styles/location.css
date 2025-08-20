@@ -80,3 +80,13 @@ body[data-theme='dark'] .map-attribution p {
     height: 300px;
   }
 }
+
+@media (min-width: 768px) {
+  .location-desktop {
+    display: block !important;
+  }
+}
+
+.location-desktop {
+  display: none;
+}

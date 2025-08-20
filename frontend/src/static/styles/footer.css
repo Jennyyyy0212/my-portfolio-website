@@ -55,16 +55,36 @@
 }
 
 .footer-right {
-  display: flex;
-  gap: 1rem;
-  justify-content: flex-end;
-  font-size: 1.5rem;
-  flex: 1;
+  display: none;
 }
-.footer-right a {
-  color: var(--text-light);
-  transition: color 0.3s ease;
+
+/* Desktop: show icons again */
+@media (min-width: 768px) {
+  .footer-right {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    font-size: 1.5rem;
+    flex: 1;
+  }
+
+  .footer-right a {
+    color: var(--text-light);
+    transition: color 0.3s ease;
+  }
+
+  .footer-right a:hover {
+    color: var(--accent);
+  }
 }
-.footer-right a:hover {
-  color: var(--accent);
+
+@media (max-width: 767.98px) {
+  /* Center the visible parts on mobile */
+  .footer-container {
+    justify-content: center;         /* center logo + text as a group */
+    gap: 8px;
+  }
+  .footer-text {
+    text-align: center;
+  }
 }

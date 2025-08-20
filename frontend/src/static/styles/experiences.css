@@ -191,9 +191,6 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .experiences-section {
-    padding: 60px 0;
-  }
 
   .section-title {
     font-size: 2.5rem;
@@ -339,4 +336,15 @@
   border-radius: 8px;
   object-fit: cover;
   max-height: 200px;
+}
+
+/* Ensure desktop experiences section is visible */
+@media (min-width: 768px) {
+  .experiences-desktop {
+    display: block !important;
+  }
+}
+
+.experiences-desktop {
+  display: none;
 }
