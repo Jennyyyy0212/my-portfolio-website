@@ -69,3 +69,6 @@ You'll now be able to open the frontend URL to view the website!
 3. **Manual trigger** the workflow after you tested on local and everything works good (Not automatically but you can change it if you want)
 4. Received the Discord notification if success or fail
 5. Check your updated site at `https://<your-username>.github.io/<repo-name>/` (You can also check the backend service deploy status on [Render](https://render.com/))
+
+## Updates
+See the full update log in [UPDATES.md](./UPDATES.md).
